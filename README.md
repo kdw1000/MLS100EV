@@ -10,13 +10,14 @@ Ein sinnvoller erster Schritt ist eine Vor-Ort-Datenevaluierung mit Schwingungsd
 
 **Abb 1:** Testbed zur Maschinendatenevaluierung mit der WRD/Box
 
-Das Testbed zur Maschinendatenevaluierung besteht aus einer WRD/Box mit externer Evaluationssensorik an der Maschine als Datenquelle. Die WRD/Box besitzt ein 4G-Mobilfunkmodem und ist für den Datenexperten als auch den Maschinenbetreiber über eine gesicherte Internetverbindung erreichbar.
+Das Testbed zur Maschinendatenevaluierung besteht aus einer WRD/Box mit externer Evaluationssensorik an der Maschine als Datenquelle. Die WRD/Box besitzt ein 4G-Mobilfunkmodem und ist **sowohl** für den Datenexperten als auch den Maschinenbetreiber über eine gesicherte Internetverbindung erreichbar.
 
 Der Datenexperte startet die Datenerfassung, verschafft sich das notwendige Datenverständnis, bereitet die erfassten Daten auf und analysiert sie zusammen mit dem Betreiber, um daraus ein geeignetes Eingangsdatenbild für die gewünschte Aufgabe, wie bspw. virtuelle Bestriebsstundenzähler, zu erzeugen.
 
 ## Technische Daten WRD/Box mit RMG/938AL
 
 * 1x Mobilfunk-Interface (4G) für LTE Cat 4-Verbindungen
+* GNSS (Global Navigation Satellite System) Option verfügbar 
 * 1x SIM-Kartensteckplatz (IGW/938L-Gehäuserückwand)
 * Mobile Virtual Network Operator (MVNO) SIM-Karte mit IoT-Datenplan vorinstalliert
 * 2x SMA-Stecker für externe Mobilfunkantennen
