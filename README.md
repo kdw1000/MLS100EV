@@ -25,9 +25,13 @@ Der Datenexperte startet die Datenerfassung, verschafft sich das notwendige Date
 * 1x USB 2.0 Host
 * 1x RS485 serieller Port (Schraubklemme)
 * 1x RS232/RS485 serieller Port (Schraubklemme)
-* Integriertes 110 - 230 VAC/24 VDC Netzteil
+* Integriertes 110 - 230 VAC/24 VDC Netzteil mit Netzanschlusskabel
 * Leuchtdioden zur Statusanzeige
 * Embedded Debian Linux Betriebssystem
 * SSV Wireless Remote Development Software Stack
 * PKI-basierte Vertrauenskette für End-2-End Security
-* Zwei alternative Gehäusevarianten
+* Zwei alternative Gehäusevarianten 110 x 180mm, 254 x 180mm
+* Interner Aufbau über 35mm DIN-Hutschienen
+* 1x externe LTE-Mobilfunkantenne mit 3m Kabel
+
+
