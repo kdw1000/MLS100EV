@@ -35,4 +35,7 @@ Der Datenexperte startet die Datenerfassung, verschafft sich das notwendige Date
 * Interner Aufbau über 35mm DIN-Hutschienen
 * 1x externe LTE-Mobilfunkantenne mit 3m Kabel
 
+## MLS/100EV als Evaluationssensorik
+
+...
 
