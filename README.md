@@ -14,18 +14,20 @@ Das Testbed zur Maschinendatenevaluierung besteht aus einer WRD/Box mit externer
 
 Der Datenexperte startet die Datenerfassung, verschafft sich das notwendige Datenverständnis, bereitet die erfassten Daten auf und analysiert sie zusammen mit dem Betreiber, um daraus ein geeignetes Eingangsdatenbild für die gewünschte Aufgabe, wie bspw. virtuelle Bestriebsstundenzähler, zu erzeugen.
 
-## Technical Data Hardware
+## Technische Daten WRD/Box mit RMG/938AL
 
-* ...
-* **RAM:** 128 MB DDR3 SDRAM
-* **Flash:** 1x microSD card holder
-* **Ethernet:** 1x 10/100 Mbps
-* **USB:** 1x USB 2.0 host port with max. 480 Mbps
-* **UART:** 3x UART (COM1 with all hardware handshake signals, COM2 TX/RX only, COM3 TX/RX/RTS/CTS - functional OR with 4 GPIO signals)
-* **SPI:** 1x SPI master controller, functional OR with 4 GPIO signals
-* **I2C:** 1x I2C master controller, functional OR with 2 GPIO signals
-* **GPIO:** 20-Pin GPIO (General Purpose Input Output)
-* **RTC:** 1x Real time clock
-* **Watchdog:** 1x Timer watchdog (hardware-based, software-configurable), 1x Power supervisor (hardware-based)
-* **Power supply:** 3.3 VDC ±5%
-* **Current consumption:** 300 mA typ. / 500 mA max.
+* 1x Mobilfunk-Interface (4G) für LTE Cat 4-Verbindungen
+* 1x SIM-Kartensteckplatz (IGW/938L-Gehäuserückwand)
+* Mobile Virtual Network Operator (MVNO) SIM-Karte mit IoT-Datenplan vorinstalliert
+* 2x SMA-Stecker für externe Mobilfunkantennen
+* Unterstützung aller gängigen Cloud-Protokolle
+* 2x 10/100 Mbps Ethernet LAN
+* 1x USB 2.0 Host
+* 1x RS485 serieller Port (Schraubklemme)
+* 1x RS232/RS485 serieller Port (Schraubklemme)
+* Integriertes 110 - 230 VAC/24 VDC Netzteil
+* Leuchtdioden zur Statusanzeige
+* Embedded Debian Linux Betriebssystem
+* SSV Wireless Remote Development Software Stack
+* PKI-basierte Vertrauenskette für End-2-End Security
+* Zwei alternative Gehäusevarianten
