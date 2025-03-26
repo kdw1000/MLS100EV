@@ -7,6 +7,7 @@ Dafür sind zunächst verschiedene Fragen zu beantworten und Details zu klären.
 Ein sinnvoller erster Schritt ist eine Vor-Ort-Datenevaluierung mit Schwingungsdaten, die mit der Maschinennutzung korrelieren. Dazu wird ein Sensor am Maschinengehäuse befestigt und mit einer industrietauglichen Rechnerbaugruppe verbunden, um die Schwingungsdaten über einen längeren Zeitraum zu erfassen. Anschließend werden die so erzeugten Zeitreihendaten analysiert, bewertet und ggf. weiteren Beteiligten präsentiert. Dabei sind besonders die Zustandsübergänge von Bedeutung, also z. B. vom Standby in den Betrieb mit geringer Last, der Wechsel zum Volllastbetrieb, Betriebsunterbrechungen durch Rüstphasen usw.
 
 ![WRD/Box mit Workflow](https://ssv-comm.de/forum/bilder/softsensor_wrd-box_datenevaluierung.png)
+
 **Abb 1:** Testbed zur Maschinendatenevaluierung mit der WRD/Box
 
 Das Testbed zur Maschinendatenevaluierung besteht aus einer WRD/Box mit externer Evaluationssensorik an der Maschine als Datenquelle. Die WRD/Box besitzt ein 4G-Mobilfunkmodem und ist für den Datenexperten als auch den Maschinenbetreiber über eine gesicherte Internetverbindung erreichbar.
