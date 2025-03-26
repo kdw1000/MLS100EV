@@ -30,7 +30,7 @@ Der Datenexperte startet die Datenerfassung, verschafft sich das notwendige Date
 * Embedded Debian Linux Betriebssystem
 * SSV Wireless Remote Development Software Stack
 * PKI-basierte Vertrauenskette für End-2-End Security
-* Zwei alternative Gehäusevarianten 110 x 180mm, 254 x 180mm
+* Zwei alternative Gehäusevarianten 110 x 180mm, 254 x 180mm mit Staubschutzdeckel
 * Interner Aufbau über 35mm DIN-Hutschienen
 * 1x externe LTE-Mobilfunkantenne mit 3m Kabel
 
