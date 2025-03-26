@@ -13,3 +13,19 @@ Ein sinnvoller erster Schritt ist eine Vor-Ort-Datenevaluierung mit Schwingungsd
 Das Testbed zur Maschinendatenevaluierung besteht aus einer WRD/Box mit externer Evaluationssensorik an der Maschine als Datenquelle. Die WRD/Box besitzt ein 4G-Mobilfunkmodem und ist für den Datenexperten als auch den Maschinenbetreiber über eine gesicherte Internetverbindung erreichbar.
 
 Der Datenexperte startet die Datenerfassung, verschafft sich das notwendige Datenverständnis, bereitet die erfassten Daten auf und analysiert sie zusammen mit dem Betreiber, um daraus ein geeignetes Eingangsdatenbild für die gewünschte Aufgabe, wie bspw. virtuelle Bestriebsstundenzähler, zu erzeugen.
+
+## Technical Data Hardware
+
+* ...
+* **RAM:** 128 MB DDR3 SDRAM
+* **Flash:** 1x microSD card holder
+* **Ethernet:** 1x 10/100 Mbps
+* **USB:** 1x USB 2.0 host port with max. 480 Mbps
+* **UART:** 3x UART (COM1 with all hardware handshake signals, COM2 TX/RX only, COM3 TX/RX/RTS/CTS - functional OR with 4 GPIO signals)
+* **SPI:** 1x SPI master controller, functional OR with 4 GPIO signals
+* **I2C:** 1x I2C master controller, functional OR with 2 GPIO signals
+* **GPIO:** 20-Pin GPIO (General Purpose Input Output)
+* **RTC:** 1x Real time clock
+* **Watchdog:** 1x Timer watchdog (hardware-based, software-configurable), 1x Power supervisor (hardware-based)
+* **Power supply:** 3.3 VDC ±5%
+* **Current consumption:** 300 mA typ. / 500 mA max.
