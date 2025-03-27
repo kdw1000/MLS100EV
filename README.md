@@ -35,6 +35,8 @@ Der Datenexperte startet die Datenerfassung, verschafft sich das notwendige Date
 * Interner Aufbau über 35mm DIN-Hutschienen
 * 1x externe LTE-Mobilfunkantenne mit 3m Kabel
 
+Siehe auch: https://www.ssv-embedded.de/doks/manuals/sr_rmg938a_en.pdf 
+
 ## MLS/100EV als Evaluationssensorik
 
 Eine geeignete Sensorplattform für die Vor-Ort-Datenevaluierung ist die Softsensor Evaluation Device MLS/100EV. Diese Baugruppe wird an einem Maschinengehäuse befestigt und per USB mit der WRD/Box verbunden. Durch den modularen Aufbau mit zwei internen mikroBUS™-Steckplätzen für Erweiterungsplatinen lässt sich die bestmöglich zur Aufgabenstellung passende Sensorik zusammenstellen.
