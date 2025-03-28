@@ -7,7 +7,6 @@ Dafür sind zunächst verschiedene Fragen zu beantworten und Details zu klären.
 Ein sinnvoller erster Schritt ist eine Vor-Ort-Datenevaluierung mit Schwingungsdaten, die mit der Maschinennutzung korrelieren. Dazu wird ein Sensor am Maschinengehäuse befestigt und mit einer industrietauglichen Rechnerbaugruppe verbunden, um die Schwingungsdaten über einen längeren Zeitraum zu erfassen. Anschließend werden die so erzeugten Zeitreihendaten analysiert, bewertet und ggf. weiteren Beteiligten präsentiert. Dabei sind besonders die Zustandsübergänge von Bedeutung, also z. B. vom Standby in den Betrieb mit geringer Last, der Wechsel zum Volllastbetrieb, Betriebsunterbrechungen durch Rüstphasen usw.
 
 ![WRD/Box mit Workflow](https://ssv-comm.de/GitHub-Pictures/softsensor_wrd-box_datenevaluierung.png)
-
 **Abb 1:** Testbed zur Maschinendatenevaluierung mit der WRD/Box
 
 Das Testbed zur Maschinendatenevaluierung besteht aus einer WRD/Box mit externer Evaluationssensorik an der Maschine als Datenquelle. Die WRD/Box besitzt ein 4G-Mobilfunkmodem und ist **sowohl** für den Datenexperten als auch den Maschinenbetreiber über eine gesicherte Internetverbindung erreichbar.
@@ -41,5 +40,12 @@ Siehe auch: https://www.ssv-embedded.de/doks/manuals/sr_rmg938a_en.pdf
 
 Eine geeignete Sensorplattform für die Vor-Ort-Datenevaluierung ist die Softsensor Evaluation Device MLS/100EV. Diese Baugruppe wird an einem Maschinengehäuse befestigt und per USB mit der WRD/Box verbunden. Durch den modularen Aufbau mit zwei internen mikroBUS™-Steckplätzen für Erweiterungsplatinen lässt sich die bestmöglich zur Aufgabenstellung passende Sensorik zusammenstellen.
 
-![MLS/100 und WSB/100EV](https://ssv-comm.de/GitHub-Pictures/mls100ev_ov1.png)
+![MLS/100EV und WSB/100EV](https://ssv-comm.de/GitHub-Pictures/mls100ev_ov1.png)
+**Abb 2:** Übersicht zum MLS/100EV-Gehäuse und dem internem Aufbau
+
+Ein MLS/100EV lässt sich in Abhängigkeit von der installierten Firmware in zwei unterschiedlichen Betriebsarten nutzen:
+
+Testbed Mode (TB Mode): Es besteht eine USB/UART-Verbindung zu einem externen Rechnersystem (beispielsweise einer WRD/Box oderm einem PC). Per Node-RED lassen sich die aktuellen Konfigurationsparameter auslesen, neue Konfiguration laden oder eine andere Firmware in den MCU-Flash-Speicher übertragen. Ansonsten sendet der MLS/210I im TB Mode analog zu einem MLS/160A jeweils die erfassten IMU-Rohdaten über die USB/UART-Schnittstelle an ein externes System, um die jeweiligen Daten dort weiterzuverarbeiten. Die gewünschte Abtastfrequenz der x-, y- und z-Achsenmesswerte für Beschleunigung und Winkelgeschwindigkeit ist wie beim MLS/160A einstellbar. Der TB Mode eignet sich im Rahmen einer MLS/210I-Neuinstallation z. B. zum Erfassen der Trainingsdaten für KI- bzw. ML-Modelle.
+
+Normal Operation Mode (NO Mode): Es werden gemäß der jeweiligen Konfiguration periodisch IMU-Messdaten erfasst, mit Hilfe der Sensor-spezifischen Messmethode die gewünschte Zielgröße erzeugt und periodisch bzw. ereignisgesteuert per LTE-M an einen Cloudservice gesendet. Zur Zielgrößenerzeugung wird dabei z. B. eine Fourier Transformation (FT) mit den jeweils abgetasteten IMU-Rohdaten durchgeführt und anschließend der FT-Output per Machine Learning (ML)-Inferenz klassifiziert. Das ML-Ergebnis wird sowohl zum Update der virtuellen Zähler als auch zur Anomalieerkennung genutzt.
 
