@@ -35,7 +35,11 @@ Der Datenexperte startet die Datenerfassung, verschafft sich das notwendige Date
 * Interner Aufbau über 35mm DIN-Hutschienen
 * 1x externe LTE-Mobilfunkantenne mit 3m Kabel
 
-Siehe auch: https://www.ssv-embedded.de/doks/manuals/sr_rmg938a_en.pdf 
+Eine WRD/Box besitzt eine WWAN-Verbindung (WWAN = Wireless Wide Area Network) zum Internet, über die sich ein entsprechend autorisierter (Remote-) Experte per Fernzugriff mit diesem Entwicklungswerkzeug verbinden kann. Für diese Internetverbindung werden verschiedene Technologien, wie 4G, 5G oder Satelliten-Links genutzt. Darüber hinaus existiert auch eine lokale Schnittstelle (z. B. ein Ethernet-LAN-Interface), um einem Anwender vor Ort ebenfalls den Zugriff auf die WRD/Box-Ressourcen zu ermöglichen.
+
+Die WRD/Box basiert auf einem Linux-Betriebssystem und bietet verschiedene Webschnittstellen sowie einem SSH-Zugang für den Benutzerzugriff. Zusätzlich ist in das Linux ein spezieller Wireless Remote Development Software Stack eingebunden, z. B. um einen Software-Update in den angeschlossenen Softsensor einzuspielen, eine Debugging-Sitzung der Softsensor-Firmware oder ein Monitoring mit Telemetriedaten zu ermöglichen. Insgesamt dient die WRD/Box als Werkzeug für Entwickler- bzw. DevOps-Teams, um im Rahmen einer Internet-basierten Remote-Sitzung vor Ort in einer Anwendungsumgebung die jeweils erforderlichen Debug-, Test- und Monitoringaufgaben auszuführen und darüber hinaus mit dem Anwender zu kooperieren.
+
+Siehe auch: https://www.ssv-embedded.de/doks/daten/datasheet_wrd_box.pdf und https://www.ssv-embedded.de/doks/manuals/sr_rmg938a_en.pdf. 
 
 ## MLS/100EV als Evaluationssensorik
 
