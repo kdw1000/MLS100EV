@@ -14,6 +14,15 @@ Das Testbed zur Maschinendatenevaluierung besteht aus einer WRD/Box mit externer
 
 Der Datenexperte startet die Datenerfassung, verschafft sich das notwendige Datenverständnis, bereitet die erfassten Daten auf und analysiert sie zusammen mit dem Betreiber, um daraus ein geeignetes Eingangsdatenbild für die gewünschte Aufgabe, wie bspw. virtuelle Bestriebsstundenzähler, zu erzeugen.
 
+Die beiden großen Herausforderungen hinsichtlich einer erfolgreichen Maschinendatenevaluierung sind die Datenquantität und die Datenqualität. Insofern eignet sich ein Top-Down-Ansatz als zielführende Vorgehensweise, z. B. mit der hier folgenden Gliederung:
+
+1. Welche Fragestellung soll beantwortet werden?
+2. Welche Informationen werden für die Antwort benötigt?
+3. Welche Daten sind zur Informationsgewinnung erforderlich?
+4. Welche Sensoren werden zur Datenerzeugung benötigt?
+
+Besonders die letzte Frage (Welche Sensoren werden benötigt?) erfordert eine gewisse Flexibilität. Es ist davon auszugehen, dass diverse Datenerfassungsversuche mit verschiedenen Sensorelementen durchgeführt werden.
+
 ## Technische Daten WRD/Box mit RMG/938AL
 
 * 1x Mobilfunk-Interface (4G) für LTE Cat 4-Verbindungen
