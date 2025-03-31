@@ -66,11 +66,12 @@ Ein MLS/100EV lässt sich in Abhängigkeit von der installierten Firmware in zwe
 
 ## Technische Daten MLS/100EV
 
-* Internes Mobilfunk RFSoC für LTE-M und NB-IoT (vorzertifiziert)
-* IoT-Protokollstack mit (D)TLS-Support
+* RFSoC-basiertes LTE-M Modem (vorzertifiziert)
+* Frequenzbereich 700 - 2.200 MHz 
+* Unterstützung der internationalen LTE-M-Bänder B1 - B5, B8, B12, B13, B14, B17 - B20, B25, B26, B28, B66 
+* Max. Datenrate LTE-M: 300 Kbps Downlink / 375 kbps Uplink
 * 3GPP AT-Kommandos gemäß TS 27.007 plus Erweiterungen
-* Max. Datenrate LTE-M: 300 Kbps Downlink / 375 kbps Uplink  
-* Unterstützung der internationalen LTE-M-Bänder B1, B2, B3, B4, B5, B8, B12, B13, B14, B17, B18, B19, B20, B25, B26, B28, B66 
+* IoT-Protokollstack mit (D)TLS-Support
 * Interner nanoSIM-Kartenhalter (Fourth Form Factor 4FF)
 * Mobile Virtual Network Operator (MVNO)-SIM-Karte mit IoT-Datenplan vorinstalliert (weltweit nutzbar)
 * Arm Cortex M33 Application MCU zur KI-basierten Sensordatenanalyse
