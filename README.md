@@ -52,7 +52,7 @@ Siehe auch: https://www.ssv-embedded.de/doks/daten/datasheet_wrd_box.pdf und htt
 
 ## MLS/100EV als Evaluationssensorik
 
-Eine geeignete Sensorplattform für die Vor-Ort-Datenevaluierung ist die Softsensor Evaluation Device MLS/100EV. Diese Baugruppe wird an einem Maschinengehäuse befestigt und per USB mit der WRD/Box verbunden. Durch den modularen Aufbau mit zwei internen mikroBUS™-Steckplätzen für Erweiterungsplatinen lässt sich die bestmöglich zur Aufgabenstellung passende Sensorik zusammenstellen.
+Eine geeignete Sensorplattform für die Vor-Ort-Datenevaluierung ist die Softsensor Evaluation Device MLS/100EV. Diese Baugruppe wird an einem Maschinengehäuse befestigt und per USB mit der WRD/Box verbunden. Durch den modularen Aufbau mit zwei internen mikroBUS™-Steckplätzen für Erweiterungsplatinen bzw. Erweiterungsmodule lässt sich die bestmöglich zur Aufgabenstellung passende Sensorik zusammenstellen.
 
 ![MLS/100EV und WSB/100EV](https://ssv-comm.de/GitHub-Pictures/mls100ev_ov1.png)
 
@@ -60,27 +60,30 @@ Eine geeignete Sensorplattform für die Vor-Ort-Datenevaluierung ist die Softsen
 
 Ein MLS/100EV lässt sich in Abhängigkeit von der installierten Firmware in zwei unterschiedlichen Betriebsarten nutzen:
 
-**Testbed Mode (TB Mode):** Es besteht eine USB/UART-Verbindung zu einem externen Rechnersystem (beispielsweise einer WRD/Box oderm einem PC). Per Node-RED lassen sich die aktuellen Konfigurationsparameter auslesen, neue Konfiguration laden oder eine andere Firmware in den MCU-Flash-Speicher übertragen. Ansonsten sendet der MLS/210I im TB Mode analog zu einem MLS/160A jeweils die erfassten IMU-Rohdaten über die USB/UART-Schnittstelle an ein externes System, um die jeweiligen Daten dort weiterzuverarbeiten. Die gewünschte Abtastfrequenz der x-, y- und z-Achsenmesswerte für Beschleunigung und Winkelgeschwindigkeit ist wie beim MLS/160A einstellbar. Der TB Mode eignet sich im Rahmen einer MLS/210I-Neuinstallation z. B. zum Erfassen der Trainingsdaten für KI- bzw. ML-Modelle.
+**Testbed Mode (TB Mode):** Es besteht eine USB/UART-Verbindung zu einem externen Rechnersystem (beispielsweise einer WRD/Box oder einem PC), um fortlaufend Sensordaten zu übertragen. Diese werden mit Hilfe der in den mikroBUS-Steckplätzen installierten Sensormodule periodisch erfasst, aufbereitet und an das externe System gesendet. Dort lassen sich die Daten gemäß den jeweiligen Anforderungen weiterverarbeiten bzw. evaluieren. Die USB/UART-Schnittstellenverbindung wird auch für Konfigurationsaufgaben genutzt, z. B. um die Abtastfrequenz der x-, y- und z-Achsenmesswerte für Beschleunigung und Winkelgeschwindigkeit des IMU-Sensorelements auf einem mikroBUS-Modul wunschgemäß einzustellen. Der TB Mode eignet sich im Rahmen einer Vor-Ort-Datenevaluierung für die Erfassung von IMU-Rohdaten, um die Trainingsdaten für KI- bzw. ML-Modelle zu erzeugen.
 
 **Normal Operation Mode (NO Mode):** Es werden gemäß der jeweiligen Konfiguration periodisch IMU-Messdaten erfasst, mit Hilfe der Sensor-spezifischen Messmethode die gewünschte Zielgröße erzeugt und periodisch bzw. ereignisgesteuert per LTE-M an einen Cloudservice gesendet. Zur Zielgrößenerzeugung wird dabei z. B. eine Fourier Transformation (FT) mit den jeweils abgetasteten IMU-Rohdaten durchgeführt und anschließend der FT-Output per Machine Learning (ML)-Inferenz klassifiziert. Das ML-Ergebnis wird sowohl zum Update der virtuellen Zähler als auch zur Anomalieerkennung genutzt.
 
 ## Technische Daten MLS/100EV
 
-* RFSoC-basiertes LTE-M Modem (vorzertifiziert)
+* 2x interner mikroBUS™-Steckplatz für Sensorik-Erweiterungsmodule
+* 1x interner Qwicc-Steckverbinder für I2C-basierte Erweiterungen
+* RFSoC-basiertes LTE-M-Mobilfunkmodem (vorzertifiziert)
 * Frequenzbereich 700 - 2.200 MHz 
 * Unterstützung der internationalen LTE-M-Bänder B1 - B5, B8, B12, B13, B14, B17 - B20, B25, B26, B28, B66 
 * Max. Datenrate LTE-M: 300 Kbps Downlink / 375 kbps Uplink
 * 3GPP AT-Kommandos gemäß TS 27.007 plus Erweiterungen
-* IoT-Protokollstack mit (D)TLS-Support
+* IoT-Protokollstack mit (D)TLS-Support für Internet-Funkverbindungen
 * Interner nanoSIM-Kartenhalter (Fourth Form Factor 4FF)
 * Mobile Virtual Network Operator (MVNO)-SIM-Karte mit IoT-Datenplan vorinstalliert (weltweit nutzbar)
 * Arm Cortex M33 Application MCU zur KI-basierten Sensordatenanalyse
 * 1 Mbytes Flash, 256 Kbytes RAM
-* Embedded Antenne im Gehäuseinneren
+* Embedded LTE-M-Antenne im Gehäuseinneren
 * USB-Steckverbinder zur Spannungsversorgung und Datenkommunikation 
 * Firmware Updates und Konfigurationseinstellungen per USB
 * Optionale Firmware-Varianten für den Normal- und Testbed-Betrieb 
 * Gehäuseabmessungen 109,96 x 57,04 x 27mm, Haube 83,77 x 54,57mm 
-* Mehrfarbige Status-LED (RGB LED) 
-* Maschinenmontage durch Aufkleben auf glatte Oberflächen (alternativ Montage per Schraubverbindung oder Magnetfüsse)
+* Mehrfarbige Status-LED (RGB LED)
+* Interner Debug-Steckverbinder plus Tasten für DFU-Mode
+* Maschinenmontage durch Aufkleben auf glatte Oberflächen (alternativ Montage per Schraubverbindung oder Magnethalterung)
 
