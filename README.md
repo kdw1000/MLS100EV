@@ -87,7 +87,7 @@ Ein MLS/100EV lässt sich in Abhängigkeit von der installierten Firmware in zwe
 * Interner Debug-Steckverbinder plus Tasten für DFU-Mode
 * Maschinenmontage durch Aufkleben auf glatte Oberflächen (alternativ Montage per Schraubverbindung oder Magnethalterung)
 
-### 5) TensorFlow-Modell erzeugen und für Vorhersagen nutzen
+## 5) TensorFlow-Modell erzeugen und für Vorhersagen nutzen
 
 Die folgenden Colab-Codebausteine bilden so etwas wie ein „Hallo Welt!“ des Supervised Machine Learning mit TensorFlow. Es wird ein Modell für eine lineare Regression `y = mx + b` erzeugt und für Vorhersagen genutzt.  
 
