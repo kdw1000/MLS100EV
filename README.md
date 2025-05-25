@@ -1,4 +1,4 @@
-## Beispiel: Maschinendatenevaluierung mit der WRD/Box
+## 1) Beispiel: Maschinendatenevaluierung mit der WRD/Box
 
 Für jede Condition Monitoring-Aufgabe im Rahmen eines Digitalisierungs-Retrofits, bei der keine passende Schnittstelle zur Maschinensteuerung als Datenquelle genutzt werden kann, muss zuerst ein geeignetes Eingangsdatenbild erzeugt werden, wofür in der Regel eine externe Sensorik als Datenquelle erforderlich ist.
 
@@ -23,7 +23,7 @@ Die beiden großen Herausforderungen hinsichtlich einer erfolgreichen Maschinend
 
 Besonders die letzte Frage (Welche Sensoren werden benötigt?) erfordert eine gewisse Flexibilität. Es ist davon auszugehen, dass diverse Datenerfassungsversuche mit verschiedenen Sensorelementen durchgeführt werden.
 
-## Technische Daten WRD/Box mit RMG/938AL
+## 2) Technische Daten WRD/Box mit RMG/938AL
 
 * 1x Mobilfunk-Interface (4G) für LTE Cat 4-Verbindungen
 * GNSS (Global Navigation Satellite System) Option verfügbar 
@@ -50,7 +50,7 @@ Die WRD/Box basiert auf einem Linux-Betriebssystem und bietet verschiedene Websc
 
 Siehe auch: https://www.ssv-embedded.de/doks/daten/datasheet_wrd_box.pdf und https://www.ssv-embedded.de/doks/manuals/sr_rmg938a_en.pdf. 
 
-## MLS/100EV als Evaluationssensorik
+## 3) MLS/100EV als Evaluationssensorik
 
 Eine geeignete Sensorplattform für die Vor-Ort-Datenevaluierung ist die Softsensor Evaluation Device MLS/100EV. Diese Baugruppe wird an einem Maschinengehäuse befestigt und per USB mit der WRD/Box verbunden. Durch den modularen Aufbau mit zwei internen mikroBUS™-Steckplätzen für Erweiterungsplatinen bzw. Erweiterungsmodule lässt sich die bestmöglich zur Aufgabenstellung passende Sensorik zusammenstellen.
 
@@ -64,7 +64,7 @@ Ein MLS/100EV lässt sich in Abhängigkeit von der installierten Firmware in zwe
 
 **Normal Operation Mode (NO Mode):** Es werden gemäß der jeweiligen Konfiguration periodisch IMU-Messdaten erfasst, mit Hilfe der Sensor-spezifischen Messmethode die gewünschte Zielgröße erzeugt und periodisch bzw. ereignisgesteuert per LTE-M an einen Cloudservice gesendet. Zur Zielgrößenerzeugung wird dabei z. B. eine Fourier Transformation (FT) mit den jeweils abgetasteten IMU-Rohdaten durchgeführt und anschließend der FT-Output per Machine Learning (ML)-Inferenz klassifiziert. Das ML-Ergebnis lässt sich in der Zielumgebung bestimmungsgemäß nutzen, beispielsweise zum Update virtueller Zähler oder auch zur Anomalieerkennung.
 
-## Technische Daten MLS/100EV
+## 4) Technische Daten MLS/100EV
 
 * 2x interner mikroBUS™-Steckplatz für Sensorik-Erweiterungsmodule
 * 1x interner Qwicc-Steckverbinder für I2C-basierte Erweiterungen
@@ -87,3 +87,177 @@ Ein MLS/100EV lässt sich in Abhängigkeit von der installierten Firmware in zwe
 * Interner Debug-Steckverbinder plus Tasten für DFU-Mode
 * Maschinenmontage durch Aufkleben auf glatte Oberflächen (alternativ Montage per Schraubverbindung oder Magnethalterung)
 
+### 5) TensorFlow-Modell erzeugen und für Vorhersagen nutzen
+
+Die folgenden Colab-Codebausteine bilden so etwas wie ein „Hallo Welt!“ des Supervised Machine Learning mit TensorFlow. Es wird ein Modell für eine lineare Regression `y = mx + b` erzeugt und für Vorhersagen genutzt.  
+
+Ein Lernalgorithmus soll in diesem Beispiel die Gewichtungen für ein Modell aus den zur Verfügung stehenden Trainingsdaten erlernen. Diese Gewichtungen beschreiben die Wahrscheinlichkeit, dass die Datenmuster, die das Modell aus den Daten erlernt (in unserem Beispiel `x = np.array([…])` und `y = np.array([…])`), die tatsächlichen Beziehungen in diesen Daten widerspiegeln. Mit diesem erlernten Modell kann man anschließend für einen bisher unbekannten x-Wert den jeweiligen y-Wert vorhersagen, wenn für x und y die gleichen Beziehungen wie für die Trainingsdaten gelten.  
+
+### 5.1) Beispiel für ein TensorFlow-Regressionsmodell 
+
+Der hier folgende Code beinhaltet die Trainingsdaten `x = np.array([…])` und `y = np.array([…])` sowie die erforderlichen TensorFlow-Funktionsaufrufe zur Modellbildung. Durch die Codeausführung in einer Colab-Zelle wird die Datei *my_model.h5* im Colab-Dateibereich erzeugt. Diese Datei bildet das neue Modell.
+
+```python
+# TensorFlow regression model example ...
+
+import tensorflow as tf
+import numpy as np
+from tensorflow import keras
+
+x = np.array([-1.0, 0.0, 1.0, 2.0,  3.0,  4.0], dtype=float)
+y = np.array([-2.0, 1.0, 4.0, 7.0, 10.0, 13.0], dtype=float)
+
+model = tf.keras.Sequential([keras.layers.Dense(units=1, input_shape=[1])])
+
+model.compile(optimizer='sgd', loss='mean_squared_error')
+
+history = model.fit(x, y, epochs=400)
+
+# Save the Keras model to .h5 file ...
+model.save("my_model.h5")
+```
+
+### 5.2) Lernkurve des Modells visualisieren 
+
+Der eigentliche Lernvorgang zur Modellbildung einer Supervised Machine Learning-Anwendung erfolgt in einer Trainingsschleife. Dabei entstehen TensorFlow und Keras interne Daten zum Verlauf der Lernkurve (Training loss). Der folgende Code bewirkt die Darstellung eines Diagramms mit dem *Training loss*. 
+
+```python
+# ... Show the training loss as diagram
+
+import matplotlib.pyplot as plt
+
+loss = history.history['loss']
+epochs = range(1, len(loss) + 1)
+
+plt.plot(epochs, loss, 'bo', label='Training loss')
+plt.title('Training loss')
+plt.show()
+```
+
+### 5.3) Modellparameter ausgeben
+
+Das Machine Learning-Modell wird in unserem Beispiel durch ein künstliches neuronales Netzwerk mit je einem Eingang und Ausgang gebildet. Es gibt für die lineare Regression `y = mx + b` genau zwei „lernfähige“ Parameter: *m* und *b*. Die Detailinformationen zum neuronalen Netz lassen sich mit dem folgenden Code in Textform ausgeben:
+
+```python
+# ... Show more model details
+
+import tensorflow as tf
+import numpy as np
+from tensorflow import keras
+
+model = keras.models.load_model("my_model.h5")
+model.summary()
+```
+
+### 5.4) Modell unter TensorFlow für Vorhersagen nutzen 
+
+Nachdem ein Machine-Learning-Modell vorliegt, lässt es sich für Vorhersagen nutzen (also, um für einen neuen x-Wert den jeweiligen y-Wert zu bestimmen. Der folgende Code bildet den erfoderlichen Inferenzbaustein:
+
+```python
+# ... Load model file and predict something
+
+import tensorflow as tf
+import numpy as np
+from tensorflow import keras
+
+model = keras.models.load_model("my_model.h5")
+print(np.round(model.predict([3]), 1))
+```
+Der neue x-Wert ist in diesem Beispiel die *3* in der letzten Codezeile `print(np.round(model.predict([3]), 1))`. Sie können hier auch andere Werte eintragen und die Codsezelle unter Colab immer wieder ausführen.
+
+### 5.5) Modell in TensorFlow Lite-Format konvertieren 
+
+Um ein TensorFlow-Modell für die Inferenz in einer OT-Umgebung zu nutzen, ist auf dem Zielsystem auch eine vollständige TensorFlow-Laufzeitumgebung erforderlich. Falls Ihre OT-Hardware dafür nicht die erforderlichen Ressourcen bietet, können Sie das Modell in ein TensorFlow Lite-Modell umwandeln. Der folgende Code führt diese Umwandlung aus: Die Datei *my_model.h5* wird TensorFlow Lite-Modell mit dem Namen *my_model.tflite* konvertiert.
+
+```python
+# TensorFlow Lite: Load model file and convert model to *.tflite ...
+
+import tensorflow as tf
+import numpy as np
+from tensorflow import keras
+
+model = keras.models.load_model("my_model.h5")
+
+# Convert the Keras model to .tflite file ...
+converter = tf.lite.TFLiteConverter.from_keras_model(model)
+#converter.optimizations = [tf.lite.Optimize.OPTIMIZE_FOR_SIZE]
+#converter.optimizations = [tf.lite.Optimize.DEFAULT]
+tflite_model = converter.convert()
+open('my_model.tflite', 'wb').write(tflite_model)
+```
+
+### 5.6) TensorFlow Lite-Interpreter für Vorhersagen nutzen 
+
+Eine Inferenzmaschine, die TensorFlow Lite-Modelle nutzt (also z. B. Dateien im *tflite*-Format), benötigt einen sogenannten Interpreter. Der hier folgende Code dient als Beispiel für einen solchen TensorFlow Lite-Interpreter.
+
+```python
+# TensorFlow Lite: load *.tflite model file and predict something ...
+
+import numpy as np
+import tensorflow as tf
+
+# Load TFLite model and allocate tensors.
+interpreter = tf.lite.Interpreter(model_path="my_model.tflite")
+interpreter.allocate_tensors()
+
+# Get input and output tensors.
+input_details = interpreter.get_input_details()
+output_details = interpreter.get_output_details()
+
+# Use model with input data.
+input_shape = input_details[0]['shape']
+input_data = np.array([[3.0]], dtype=np.float32)
+interpreter.set_tensor(input_details[0]['index'], input_data)
+
+interpreter.invoke()
+
+# The function `get_tensor()` returns a copy of the tensor data.
+# Use `tensor()` in order to get a pointer to the tensor.
+output_data = interpreter.get_tensor(output_details[0]['index'])
+print(np.round(output_data, 1))
+```
+
+### 5.7) TensorFlow Lite-Interpreter für Embedded Systeme mit Python 
+
+Eine Inferenzmaschine für TensorFlow Lite-Modelle lässt sich auch auf Embedded Systemen realisieren, die Python unterstützen. Es ist in diesem Fall keine vollständige TensorFlow-Installation auf dem Zielsystem erforderlich. Eine relativ schlanke Python3-Laufzeitumgebung mit Numpy-Erweiterung und einem TensorFlow-Lite-Interpreter reicht bereits aus. Der Interpreter-Code sieht in diesem Fall etwas anders aus:     
+
+```python
+# TensorFlow Lite: load model file from /tmp/ and predict something ...
+
+import numpy as np
+import tflite_runtime.interpreter as tflite
+
+# Load TFLite model and allocate tensors.
+interpreter = tflite.Interpreter(model_path="/tmp/my_model.tflite")
+interpreter.allocate_tensors()
+
+# Get input and output tensors.
+input_details = interpreter.get_input_details()
+output_details = interpreter.get_output_details()
+
+# Use model with input data.
+input_shape = input_details[0]['shape']
+input_data = np.array([[-5.6]], dtype=np.float32) 
+interpreter.set_tensor(input_details[0]['index'], input_data)  
+
+interpreter.invoke()
+
+# The function 'get_tensor()' returns a copy of the tensor data.
+# Use 'tensor()' in order to get a pointer to the tensor.
+output_data = interpreter.get_tensor(output_details[0]['index'])
+print(np.round(output_data, 2))
+```
+
+### 5.8) Trainingsdaten für weitere Regressionsmodelle 
+
+Die Trainingsdaten `x = np.array([…])` und `y = np.array([…])` unter *5.1 Beispiel für ein TensorFlow-Regressionsmodell* können Sie gegen eines der beiden folgenden Beispiele austauschen, um anschließend ein neues TensorFlow-Modell zu erzeugen.
+
+```python
+# More data to learn (y = mx + b)
+
+x = np.array([-1.0, 0.0, 1.0, 2.0, 3.0, 4.0,  5.0,  6.0], dtype=float)
+y = np.array([-0.5, 1.5, 3.5, 5.5, 7.5, 9.5, 11.5, 13.5], dtype=float)
+
+x = np.array([-1.0, 0.0,  1.0, 2.0,  3.0, 4.0,  5.0, 6.0], dtype=float)
+y = np.array([0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5], dtype=float)
+```
