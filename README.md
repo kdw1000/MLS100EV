@@ -94,9 +94,9 @@ Die folgenden Colab-Codebausteine bilden so etwas wie ein „Hallo Welt!“ des 
 
 Ein Lernalgorithmus soll in diesem Beispiel die Gewichtungen für ein Modell aus den zur Verfügung stehenden Trainingsdaten erlernen. Diese Gewichtungen beschreiben die Wahrscheinlichkeit, dass die Datenmuster, die das Modell aus den Daten erlernt (in unserem Beispiel `x = np.array([…])` und `y = np.array([…])`), die tatsächlichen Beziehungen in diesen Daten widerspiegeln. Mit diesem erlernten Modell kann man anschließend für einen bisher unbekannten x-Wert den jeweiligen y-Wert vorhersagen, wenn für x und y die gleichen Beziehungen wie für die Trainingsdaten gelten.  
 
-### 5.1) Beispiel für ein TensorFlow-Regressionsmodell 
+### 5.1) ML-Regressionsmodell mit TensorFow nd Keras erzeugen 
 
-Der hier folgende Code beinhaltet die Trainingsdaten `x = np.array([…])` und `y = np.array([…])` sowie die erforderlichen TensorFlow-Funktionsaufrufe zur Modellbildung. Durch die Codeausführung in einer Colab-Zelle wird die Datei *my_model.h5* im Colab-Dateibereich erzeugt. Diese Datei bildet das neue Modell.
+Der hier folgende Code beinhaltet die Trainingsdaten `x = np.array([…])` und `y = np.array([…])` sowie die erforderlichen TensorFlow-Funktionsaufrufe zur Modellbildung. Durch die Codeausführung in einer Colab-Zelle wird die Datei *my_model.keras* im Colab-Dateibereich erzeugt. Diese Datei bildet das neue Modell.
 
 ```python
 import tensorflow as tf
@@ -144,7 +144,7 @@ model = keras.models.load_model("my_model.keras")
 model.summary()
 ```
 
-### 5.4) Modell unter TensorFlow für Vorhersagen nutzen 
+### 5.4) Modell in einer TensorFlow-Laufzeitumgebung für Vorhersagen nutzen 
 
 Nachdem ein Machine-Learning-Modell vorliegt, lässt es sich für Vorhersagen nutzen (also, um für einen neuen x-Wert den jeweiligen y-Wert zu bestimmen. Der folgende Code bildet den erfoderlichen Inferenzbaustein:
 
@@ -207,9 +207,9 @@ output_data = interpreter.get_tensor(output_details[0]['index'])
 print(np.round(output_data, 1))
 ```
 
-### 5.7) TensorFlow Lite-Interpreter für Embedded Systeme mit Python 
+### 5.7) ML-Modell für Embedded Systeme mit einer C/C++ Laufzeitumgebung konvertieren   
 
-Eine Inferenzmaschine für TensorFlow Lite-Modelle lässt sich auch auf Embedded Systemen realisieren, die C/C++ unterstützen. Es ist in diesem Fall ...:     
+Eine Inferenzmaschine für ein TensorFlow/Keras-Modell lässt sich auch auf Embedded Systemen realisieren, die C/C++ unterstützen. Es ist in diesem Fall ...:     
 
 ```python
 !apt-get update && apt-get install -y xxd
