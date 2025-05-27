@@ -68,6 +68,7 @@ Ein MLS/100EV lässt sich in Abhängigkeit von der installierten Firmware in zwe
 
 * 2x interner mikroBUS™-Steckplatz für Sensorik-Erweiterungsmodule
 * 1x interner Qwicc-Steckverbinder für I2C-basierte Erweiterungen
+* 1x LM75A Digitaler Temperatursensor
 * RFSoC-basiertes LTE-M-Mobilfunkmodem (vorzertifiziert)
 * Frequenzbereich 700 - 2.200 MHz 
 * Unterstützung der internationalen LTE-M-Bänder B1 - B5, B8, B12, B13, B14, B17 - B20, B25, B26, B28, B66 
@@ -160,7 +161,7 @@ Der neue x-Wert ist in diesem Beispiel die *3* in der letzten Codezeile `print(n
 
 ### 5.5) Modell in TensorFlow Lite-Format konvertieren 
 
-Um ein TensorFlow-Modell für die Inferenz in einer OT-Umgebung zu nutzen, ist auf dem Zielsystem auch eine vollständige TensorFlow-Laufzeitumgebung erforderlich. Falls Ihre OT-Hardware dafür nicht die erforderlichen Ressourcen bietet, können Sie das Modell in ein TensorFlow Lite-Modell umwandeln. Der folgende Code führt diese Umwandlung aus: Die Datei *my_model.h5* wird TensorFlow Lite-Modell mit dem Namen *my_model.tflite* konvertiert.
+Um ein TensorFlow-Modell für die Inferenz in einer OT-Umgebung zu nutzen, ist auf dem Zielsystem auch eine vollständige TensorFlow-Laufzeitumgebung erforderlich. Falls Ihre OT-Hardware dafür nicht die erforderlichen Ressourcen bietet, können Sie das Modell in ein TensorFlow Lite-Modell umwandeln. Der folgende Code führt diese Umwandlung aus: Die Datei *my_model.keras* wird TensorFlow Lite-Modell mit dem Namen *my_model.tflite* konvertiert.
 
 ```python
 import tensorflow as tf
