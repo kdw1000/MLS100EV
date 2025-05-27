@@ -98,8 +98,6 @@ Ein Lernalgorithmus soll in diesem Beispiel die Gewichtungen für ein Modell aus
 Der hier folgende Code beinhaltet die Trainingsdaten `x = np.array([…])` und `y = np.array([…])` sowie die erforderlichen TensorFlow-Funktionsaufrufe zur Modellbildung. Durch die Codeausführung in einer Colab-Zelle wird die Datei *my_model.h5* im Colab-Dateibereich erzeugt. Diese Datei bildet das neue Modell.
 
 ```python
-# TensorFlow regression model example ...
-
 import tensorflow as tf
 import numpy as np
 from tensorflow import keras
@@ -111,10 +109,10 @@ model = tf.keras.Sequential([keras.layers.Dense(units=1, input_shape=[1])])
 
 model.compile(optimizer='sgd', loss='mean_squared_error')
 
-history = model.fit(x, y, epochs=400)
+history = model.fit(x, y, epochs=100)
 
-# Save the Keras model to .h5 file ...
-model.save("my_model.h5")
+# Save the Keras model to .keras file ...
+model.save('my_model.keras')
 ```
 
 ### 5.2) Lernkurve des Modells visualisieren 
@@ -122,8 +120,6 @@ model.save("my_model.h5")
 Der eigentliche Lernvorgang zur Modellbildung einer Supervised Machine Learning-Anwendung erfolgt in einer Trainingsschleife. Dabei entstehen TensorFlow und Keras interne Daten zum Verlauf der Lernkurve (Training loss). Der folgende Code bewirkt die Darstellung eines Diagramms mit dem *Training loss*. 
 
 ```python
-# ... Show the training loss as diagram
-
 import matplotlib.pyplot as plt
 
 loss = history.history['loss']
@@ -139,13 +135,11 @@ plt.show()
 Das Machine Learning-Modell wird in unserem Beispiel durch ein künstliches neuronales Netzwerk mit je einem Eingang und Ausgang gebildet. Es gibt für die lineare Regression `y = mx + b` genau zwei „lernfähige“ Parameter: *m* und *b*. Die Detailinformationen zum neuronalen Netz lassen sich mit dem folgenden Code in Textform ausgeben:
 
 ```python
-# ... Show more model details
-
 import tensorflow as tf
 import numpy as np
 from tensorflow import keras
 
-model = keras.models.load_model("my_model.h5")
+model = keras.models.load_model("my_model.keras")
 model.summary()
 ```
 
@@ -154,14 +148,13 @@ model.summary()
 Nachdem ein Machine-Learning-Modell vorliegt, lässt es sich für Vorhersagen nutzen (also, um für einen neuen x-Wert den jeweiligen y-Wert zu bestimmen. Der folgende Code bildet den erfoderlichen Inferenzbaustein:
 
 ```python
-# ... Load model file and predict something
-
 import tensorflow as tf
 import numpy as np
 from tensorflow import keras
 
-model = keras.models.load_model("my_model.h5")
-print(np.round(model.predict([3]), 1))
+model = keras.models.load_model("my_model.keras")
+#print(np.round(model.predict([3]), 1))
+print(np.round(model.predict(np.array([[3.0]])), 1))
 ```
 Der neue x-Wert ist in diesem Beispiel die *3* in der letzten Codezeile `print(np.round(model.predict([3]), 1))`. Sie können hier auch andere Werte eintragen und die Codsezelle unter Colab immer wieder ausführen.
 
@@ -170,13 +163,11 @@ Der neue x-Wert ist in diesem Beispiel die *3* in der letzten Codezeile `print(n
 Um ein TensorFlow-Modell für die Inferenz in einer OT-Umgebung zu nutzen, ist auf dem Zielsystem auch eine vollständige TensorFlow-Laufzeitumgebung erforderlich. Falls Ihre OT-Hardware dafür nicht die erforderlichen Ressourcen bietet, können Sie das Modell in ein TensorFlow Lite-Modell umwandeln. Der folgende Code führt diese Umwandlung aus: Die Datei *my_model.h5* wird TensorFlow Lite-Modell mit dem Namen *my_model.tflite* konvertiert.
 
 ```python
-# TensorFlow Lite: Load model file and convert model to *.tflite ...
-
 import tensorflow as tf
 import numpy as np
 from tensorflow import keras
 
-model = keras.models.load_model("my_model.h5")
+model = keras.models.load_model("my_model.keras")
 
 # Convert the Keras model to .tflite file ...
 converter = tf.lite.TFLiteConverter.from_keras_model(model)
@@ -191,8 +182,6 @@ open('my_model.tflite', 'wb').write(tflite_model)
 Eine Inferenzmaschine, die TensorFlow Lite-Modelle nutzt (also z. B. Dateien im *tflite*-Format), benötigt einen sogenannten Interpreter. Der hier folgende Code dient als Beispiel für einen solchen TensorFlow Lite-Interpreter.
 
 ```python
-# TensorFlow Lite: load *.tflite model file and predict something ...
-
 import numpy as np
 import tensorflow as tf
 
@@ -219,33 +208,26 @@ print(np.round(output_data, 1))
 
 ### 5.7) TensorFlow Lite-Interpreter für Embedded Systeme mit Python 
 
-Eine Inferenzmaschine für TensorFlow Lite-Modelle lässt sich auch auf Embedded Systemen realisieren, die Python unterstützen. Es ist in diesem Fall keine vollständige TensorFlow-Installation auf dem Zielsystem erforderlich. Eine relativ schlanke Python3-Laufzeitumgebung mit Numpy-Erweiterung und einem TensorFlow-Lite-Interpreter reicht bereits aus. Der Interpreter-Code sieht in diesem Fall etwas anders aus:     
+Eine Inferenzmaschine für TensorFlow Lite-Modelle lässt sich auch auf Embedded Systemen realisieren, die C/C++ unterstützen. Es ist in diesem Fall ...:     
 
 ```python
-# TensorFlow Lite: load model file from /tmp/ and predict something ...
+!apt-get update && apt-get install -y xxd
 
-import numpy as np
-import tflite_runtime.interpreter as tflite
+model = keras.models.load_model("my_model.keras")
 
-# Load TFLite model and allocate tensors.
-interpreter = tflite.Interpreter(model_path="/tmp/my_model.tflite")
-interpreter.allocate_tensors()
+# Convert the Keras model to .tflite file
+converter = tf.lite.TFLiteConverter.from_keras_model(model)
+tflite_model = converter.convert()
 
-# Get input and output tensors.
-input_details = interpreter.get_input_details()
-output_details = interpreter.get_output_details()
+# Save the .tflite model to a file
+tflite_model_path = 'my_model.tflite'
+with open(tflite_model_path, 'wb') as f:
+    f.write(tflite_model)
 
-# Use model with input data.
-input_shape = input_details[0]['shape']
-input_data = np.array([[-5.6]], dtype=np.float32) 
-interpreter.set_tensor(input_details[0]['index'], input_data)  
+# Convert the .tflite model to a C header file
+!xxd -i {tflite_model_path} > my_model.h
 
-interpreter.invoke()
-
-# The function 'get_tensor()' returns a copy of the tensor data.
-# Use 'tensor()' in order to get a pointer to the tensor.
-output_data = interpreter.get_tensor(output_details[0]['index'])
-print(np.round(output_data, 2))
+print(f"TensorFlow Lite model saved as {tflite_model_path} and converted to my_model.h")
 ```
 
 ### 5.8) Trainingsdaten für weitere Regressionsmodelle 
