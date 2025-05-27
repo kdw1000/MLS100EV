@@ -94,7 +94,7 @@ Die folgenden Colab-Codebausteine bilden so etwas wie ein „Hallo Welt!“ des 
 
 Ein Lernalgorithmus soll in diesem Beispiel die Gewichtungen für ein Modell aus den zur Verfügung stehenden Trainingsdaten erlernen. Diese Gewichtungen beschreiben die Wahrscheinlichkeit, dass die Datenmuster, die das Modell aus den Daten erlernt (in unserem Beispiel `x = np.array([…])` und `y = np.array([…])`), die tatsächlichen Beziehungen in diesen Daten widerspiegeln. Mit diesem erlernten Modell kann man anschließend für einen bisher unbekannten x-Wert den jeweiligen y-Wert vorhersagen, wenn für x und y die gleichen Beziehungen wie für die Trainingsdaten gelten.  
 
-### 5.1) ML-Regressionsmodell mit TensorFow nd Keras erzeugen 
+### 5.1) ML-Regressionsmodell mit TensorFlow und Keras erzeugen 
 
 Der hier folgende Code beinhaltet die Trainingsdaten `x = np.array([…])` und `y = np.array([…])` sowie die erforderlichen TensorFlow-Funktionsaufrufe zur Modellbildung. Durch die Codeausführung in einer Colab-Zelle wird die Datei *my_model.keras* im Colab-Dateibereich erzeugt. Diese Datei bildet das neue Modell.
 
@@ -207,7 +207,7 @@ output_data = interpreter.get_tensor(output_details[0]['index'])
 print(np.round(output_data, 1))
 ```
 
-### 5.7) ML-Modell für Embedded Systeme mit einer C/C++ Laufzeitumgebung konvertieren   
+### 5.7) Modell für Embedded Systeme mit einer C/C++ Laufzeitumgebung konvertieren   
 
 Eine Inferenzmaschine für ein TensorFlow/Keras-Modell lässt sich auch auf Embedded Systemen realisieren, die C/C++ unterstützen. Es ist in diesem Fall ...:     
 
