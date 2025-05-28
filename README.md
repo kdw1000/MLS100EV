@@ -88,7 +88,7 @@ Ein MLS/100EV lässt sich in Abhängigkeit von der installierten Firmware in zwe
 * Interner Debug-Steckverbinder plus Tasten für DFU-Mode
 * Maschinenmontage durch Aufkleben auf glatte Oberflächen (alternativ Montage per Schraubverbindung oder Magnethalterung)
 
-## 5) TensorFlow-Modell erzeugen und für Vorhersagen nutzen
+## 5) TensorFlow-Modell für Vorhersagen und Konvertierungen erzeugen
 
 Die folgenden Colab-Codebausteine bilden so etwas wie ein „Hallo Welt!“ des Supervised Machine Learning mit TensorFlow. Es wird ein Modell für eine lineare Regression `y = mx + b` erzeugt und für Vorhersagen genutzt.  
 
@@ -209,7 +209,7 @@ print(np.round(output_data, 1))
 
 ### 5.7) Modell für Embedded Systeme mit einer C/C++ Laufzeitumgebung konvertieren   
 
-Eine Inferenzmaschine für ein TensorFlow/Keras-Modell lässt sich auch auf Embedded Systemen realisieren, die C/C++ unterstützen. Es ist in diesem Fall ...:     
+Eine Inferenzmaschine für ein TensorFlow/Keras-Modell lässt sich auch auf Embedded Systemen realisieren, die C/C++ unterstützen. Es ist in diesem Fall ...: ... Dafür wird das *xxd*-Hexdump-Werkzeug (Hexdump Utility) aus der Linux-Welt genutzt. Mit diesem Werkzeug lassen sich beispielsweise beliebige Eingaben in eine hexadezimale Ausgabe umwandeln.      
 
 ```python
 !apt-get update && apt-get install -y xxd
