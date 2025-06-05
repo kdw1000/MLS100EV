@@ -230,6 +230,17 @@ with open(tflite_model_path, 'wb') as f:
 
 print(f"TensorFlow Lite model saved as {tflite_model_path} and converted to my_model.h")
 ```
+Die Ausgaben des Hexdump Utility in *my_model.h* sollten in etwa so aussehen:
+
+```c++
+unsigned char converted_model_tflite[] = {
+  0x18, 0x00, 0x00, 0x00, 0x54, 0x46, 0x4c, 0x33, 0x00, 0x00, 0x0e, 0x00,
+  // <Lines omitted>
+};
+unsigned int converted_model_tflite_len = 18200;
+```
+
+Ein Beispiel dafür, wie Sie ein per Hexdump Utility erzeugtes ML-Modell in Ihren C/C++ Code integrieren und nutzen können, finden Sie unter [hello_world_test.cc](https://github.com/tensorflow/tflite-micro/blob/main/tensorflow/lite/micro/examples/hello_world/hello_world_test.cc) im Beispiel *Hello World*.
 
 ### 5.8) Trainingsdaten für weitere Regressionsmodelle 
 
