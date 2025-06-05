@@ -180,7 +180,7 @@ open('my_model.tflite', 'wb').write(tflite_model)
 
 ### 5.6) TensorFlow Lite-Interpreter für Vorhersagen nutzen 
 
-Eine Inferenzmaschine, die TensorFlow Lite-Modelle nutzt (also z. B. Dateien im *tflite*-Format), benötigt einen sogenannten Interpreter. Der hier folgende Code dient als Beispiel für einen solchen TensorFlow Lite-Interpreter.
+Eine Inferenzmaschine, die TensorFlow Lite-Modelle nutzt (also z. B. Dateien im *tflite*-Format), benötigt einen sogenannten Interpreter. Der hier folgende Python-Code dient als Beispiel für einen solchen TensorFlow Lite-Interpreter.
 
 ```python
 import numpy as np
@@ -209,7 +209,7 @@ print(np.round(output_data, 1))
 
 ### 5.7) Modell für Embedded Systeme mit einer C/C++ Laufzeitumgebung konvertieren   
 
-Eine Inferenzmaschine für ein TensorFlow/Keras-Modell lässt sich auch auf Embedded Systemen realisieren, die C/C++ unterstützen. Es ist in diesem Fall ...: ... Dafür wird das *xxd*-Hexdump-Werkzeug (Hexdump Utility) aus der Linux-Welt genutzt. Mit diesem Werkzeug lassen sich beispielsweise beliebige Eingaben in eine hexadezimale Ausgabe umwandeln.      
+Eine Inferenzmaschine für ein TensorFlow/Keras-Modell lässt sich auch auf Embedded Systemen realisieren, die C/C++ unterstützen. Man spricht dann auch von einer *TinyML*-Anwendung. Für diese Zielumgebung wird das TensorFlow Lite-Modell in ein Format umgewandelt, dass sich direkt in einen C/C++ Quellcode einbinden lässt. Dafür wird das *xxd*-Hexdump-Werkzeug (Hexdump Utility) aus der Linux-Welt genutzt. Mit diesem Werkzeug lassen sich beispielsweise beliebige Eingaben in eine hexadezimale Ausgabe umwandeln.      
 
 ```python
 !apt-get update && apt-get install -y xxd
